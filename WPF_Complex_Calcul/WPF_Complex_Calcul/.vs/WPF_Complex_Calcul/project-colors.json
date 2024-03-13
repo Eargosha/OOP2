@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "51e4f23e-dcec-4546-8f0d-5797efadb1db": {
+      "ProjectGuid": "51e4f23e-dcec-4546-8f0d-5797efadb1db",
+      "DisplayName": "WPF_Complex_Calcul",
+      "ColorIndex": 0
+    },
+    "740e15a2-2369-49f7-bb25-5aa86ca66abb": {
+      "ProjectGuid": "740e15a2-2369-49f7-bb25-5aa86ca66abb",
+      "DisplayName": "WPF_Complex_CalculTests",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

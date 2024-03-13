@@ -1,0 +1,120 @@
+@startuml ChatBot
+set namespaceSeparator ::
+
+class "chat_bot::components::chat_buble.dart::ChatBubble" {
+    +Message bubbleInner
+    +State<ChatBubble> createState()
+}
+
+"chat_bot::components::chat_buble.dart::ChatBubble" o-- "chat_bot::models::message.dart::Message"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "chat_bot::components::chat_buble.dart::ChatBubble"
+
+class "chat_bot::components::chat_buble.dart::_ChatBubbleState" {
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "chat_bot::components::chat_buble.dart::_ChatBubbleState"
+
+class "chat_bot::components::subbmit_button.dart::SubbmitButon" {
+    +String text
+    +void Function()? onPressed
+    +Widget build()
+}
+
+"chat_bot::components::subbmit_button.dart::SubbmitButon" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "chat_bot::components::subbmit_button.dart::SubbmitButon"
+
+class "chat_bot::components::text_field_input.dart::TextFieldInput" {
+    +String hint
+    +TextEditingController controller
+    +void Function() onPresShiftAndEnter
+    +int maxLines
+    +Widget build()
+}
+
+"chat_bot::components::text_field_input.dart::TextFieldInput" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"chat_bot::components::text_field_input.dart::TextFieldInput" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "chat_bot::components::text_field_input.dart::TextFieldInput"
+
+class "chat_bot::main.dart::MainApp" {
+    +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "chat_bot::main.dart::MainApp"
+
+class "chat_bot::models::chat_bot.dart::ChatBot" {
+    +Map<RegExp, Function> commands
+    +List<Message> allMessages
+    +String botName
+    +void sendMessage()
+    +void botResponse()
+    +dynamic saveToFile()
+    +String cleanFileName()
+    +dynamic loadFromFile()
+    +dynamic processCommand()
+    +dynamic sayHowManyMesseges()
+    +dynamic playRockPaper()
+    +dynamic sayWeather()
+    +dynamic sayHelp()
+    +dynamic sayBye()
+    +dynamic sayHello()
+    +dynamic sayAnswerHowAreYou()
+    +dynamic sayYoureWelcome()
+    +dynamic sayPochta()
+    +dynamic sayTimeNow()
+    +dynamic sayDateNow()
+    +dynamic sayCalculationResult()
+}
+
+class "chat_bot::models::message.dart::Message" {
+    +dynamic message
+    +String senderName
+    +bool sender
+    +DateTime sentTime
+    +Map<String, dynamic> toJson()
+}
+
+class "chat_bot::pages::chat_page.dart::ChatPage" {
+    +String userName
+    +State<ChatPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "chat_bot::pages::chat_page.dart::ChatPage"
+
+class "chat_bot::pages::chat_page.dart::_ChatPageState" {
+    +String botName
+    +ChatBot bibBot
+    -TextEditingController _messageController
+    +String userName
+    +dynamic loading()
+    +void initState()
+    +void sendMessage()
+    +Widget build()
+    +Widget buildUserInput()
+}
+
+"chat_bot::pages::chat_page.dart::_ChatPageState" o-- "chat_bot::models::chat_bot.dart::ChatBot"
+"chat_bot::pages::chat_page.dart::_ChatPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "chat_bot::pages::chat_page.dart::_ChatPageState"
+
+class "chat_bot::pages::login_page.dart::LoginPage" {
+    +State<LoginPage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "chat_bot::pages::login_page.dart::LoginPage"
+
+class "chat_bot::pages::login_page.dart::_LoginPageState" {
+    -TextEditingController _controller
+    +Widget build()
+}
+
+"chat_bot::pages::login_page.dart::_LoginPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "chat_bot::pages::login_page.dart::_LoginPageState"
+
+class "chat_bot::services::weather_service.dart::WeatherService" {
+    +String apiKey
+    +dynamic getWeatherData()
+}
+
+
+@enduml

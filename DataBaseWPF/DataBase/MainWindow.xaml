@@ -1,0 +1,152 @@
+﻿<!--Window - окно приложения. Предоставляет возможность создавать, настраивать, показывать обычные и диалоговые окна, а также управлять временем их существования-->
+<!--x - пространство имен XAML. x:Name - уникально идентифицирует определяемые XAML элементы-->
+<!--x:Class - Настраивает компиляцию разметки XAML для объединения частичных классов между разметкой и кодом-->
+<!--xmlns — это расширение концепции пространства имен XML. При указании пространства имен XAML используется синтаксис пространства имен XML-->
+<!--Title - название окна, что отображается пользователю. Height - высота элемента. Width - ширина элемента. Background - цвет фона элемента. Icon - иконка элемента-->
+<Window x:Name="mainWindow" x:Class="DataBase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBase"
+        mc:Ignorable="d"
+        ResizeMode="CanMinimize"
+        Title="База данных &quot;Книга&quot;" Height="691" Width="1200" Background="#FF5E6C75" Icon="/icon_main.png">
+    <Grid Margin="0,0,0,0">
+<!--Элемент Grid в XAML представляет собой контейнер, который используется для организации элементов пользовательского интерфейса в виде сетки или таблицы. -->
+<!--Margin - это свойство, которое определяет отступы элемента от его родительского контейнера.-->            
+        <Menu FontFamily="Trebuchet MS" x:Name="menuMain" Background="#FFB3B4B9" Padding="3 3 0 3" VerticalAlignment="Top">
+<!--Элемент Menu предоставляет контейнер для размещения пунктов меню, которые обычно представлены элементами MenuItem.-->
+<!--FontFamily в XAML определяет шрифт, который используется для отображения текста элемента управления. Он позволяет указать семейство шрифтов, которые должны использоваться для текста в элементе. -->
+<!--Padding (1 число || 1 2 3 4 - с каждой стороны) определяет внутренние отступы вокруг содержимого элемента управления. Он позволяет контролировать расстояние между границами элемента и его содержимым.-->
+<!--VerticalAlignment определяет, как элемент управления должен выравниваться по вертикали в своем контейнере или родительском элементе.-->
+            <MenuItem Header="Файл" Height="25" Width="47" FontSize="13">
+<!--MenuItem представляет элемент меню в пользовательском интерфейсе приложения.-->
+<!--FontSize указывает размер шрифта, что расположен в элементе и в его детях-->       
+<!--Heder определяет текст, который отображается пользователю для идентификации или описания функции или содержимого элемента.-->
+                <MenuItem x:Name="menuItemFileOpen" Header="Открыть как" Click="menuItemFileOpen_Click"/>
+<!--MenuItem является подпунктом вышеуказанного меню-->
+<!--Click используется для привязки обработчика событий к событию "клик" (щелчок) для элемента управления. Это позволяет указать метод, который будет вызываться при нажатии на элемент.-->                
+                <MenuItem x:Name="menuItemFileSave" Header="Сохранить как" Click="menuItemFileSave_Click"/>
+            </MenuItem>
+            <MenuItem Header="Справка" Height="25" Width="64" FontSize="13">
+                <MenuItem x:Name="menuItemAboutApp" Header="О приложении" Click="menuItemAboutApp_Click"/>
+                <MenuItem x:Name="menuItemAboutDev" Header="О разработчике" Click="menuItemAboutDev_Click"/>
+            </MenuItem>
+        </Menu>
+<!--TextBlock предназначен для упрощения и предназначен специально для интеграции небольших частей содержимого потока в пользовательский интерфейс-->
+        <TextBlock FontFamily="Trebuchet MS" Margin="100,42,230,613" Text="Все книги" FontSize="20" FontWeight="SemiBold" Foreground="White"/>
+<!--Text позволяет отображать текстовую информацию на экране.-->
+<!--FontWeight задает толщину текста расположеного в элементе-->
+<!--Foreground задает Brush для Text в определенных элементах. Brush - цвет кисти-->
+        <Border MinWidth="200" Margin="27 70 27 0" Background="#FFF2ECF6" VerticalAlignment="Top" MaxWidth="1000" CornerRadius="5 5 0 0">
+<!--Border - это элемент-декоратор, который можно использовать для рисования границы, фона или всего сразу вокруг другого элемента.-->
+<!--MinWidth - минимальная ширина элемента MaxWidth - максимальная-->  
+<!--CornerRadius описывает характеристики скругленного угла, например может применяться к границе-->
+            <Border.Effect>
+<!--Effect Получает или задает эффект растрового изображения, который применяется к объекту-->
+                <!--Например DropShadowEffect| BlurRadius радиус тени | Color - цвет тени | ShadowDepth - глубина тени-->
+                <DropShadowEffect BlurRadius="6" Color="#FF777077" ShadowDepth="0"/>
+            </Border.Effect>
+<!--ToolBar называется панелью инструментов потому, что его кнопки или другие элементы управления расположены в похожем на панель ряду или столбце-->            
+            <ToolBar ToolTipService.ShowOnDisabled="False" Background="Transparent" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,0,-1434,0" >
+<!--ToolTipService.ShowOnDisabled отображается ли всплывающая подсказка для объекта, который не активен. ScrollViewer.<Horizontal||Vertical>BarVisibility - отключает верт||гор элемент для прокрутки-->
+<!--Button (элемент управления) представляет кнопку в пользовательском интерфейсе. Он используется для запуска команд, выполнения действий или навигации по приложению при нажатии.-->               
+                <Button ToolTip="Добавить запись" x:Name="btnAdd" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnAdd_Click" Margin="15 7 0 0" Padding="5 2 5 2" Background="#FFB2CA7B">
+<!--ToolTip представляет всплывающую подсказку, которая отображается при наведении курсора мыши на элемент управления-->
+<!--HorizontalAlignment определяет, как элемент будет выравниваться по горизонтали внутри родительского контейнера-->
+<!--VerticalAlignment определяет, как элемент будет выравниваться по вертикали внутри родительского контейнера-->                    
+<!--StackPanel представляет собой контейнер, который располагает свои дочерние элементы в виде стопки (или стека)-->
+<!--Orientation - то как элемент, в котором задается этот параметр располагает своих детей-->
+                    <StackPanel Orientation="Horizontal">
+<!--Image - элемент, что содержит в себе картинку, Source - источник этой картинки-->
+                        <Image Source="/add_new.png" Width="28" Height="30"/>
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="Удалить запись" x:Name="btnRemove" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnRemove_Click" Margin="10 7 0 10" Padding="5 2 5 2" Background="#FFB8B9BE">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/delete.png" Width="28" Height="30"/>
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="Редактировать запись" x:Name="btnEdit" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnEdit_Click" Margin="10 7 0 10" Padding="5 2 5 2" Background="#FFB8B9BE">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/edit_book_new.png" Width="28" Height="30"/>
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="Очистить таблицу" x:Name="btnClear" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnClear_Click" Margin="10 7 0 10" Padding="5 2 5 2" Background="#FFB8B9BE">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/clear_new.png" Width="28" Height="30"/>
+                    </StackPanel>
+                </Button>
+                <Button ToolTip="Найти запись" x:Name="btnFind" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnFind_Click" Margin="10 7 0 10" Padding="5 2 5 2" Background="#FFB8B9BE">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/search-book.png" Width="28" Height="30"/>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </Border>
+<!--DataGrid представляет элемент управления, который отображает данные в виде таблицы с возможностью сортировки, фильтрации и редактирования. -->
+        <DataGrid Style="{StaticResource ModernDataGridStyle}" FontFamily="Trebuchet MS" IsReadOnly="True" AutoGenerateColumns="False" x:Name="dataGrid" Margin="27,121,27,69" MaxWidth="1000" MinWidth="200">
+            <!--Style - задает стиль для элемента. AutoGenerateColumns - авто создание колонок из полученого Source -->
+            <!--DataGrid.Resources Получает или задает локально определенный словарь ресурсов-->
+            <DataGrid.Resources>
+                <!--Style, что задается по поводу TargetType, что смотрит на содержание столбца StatusCellStyle-->
+                <Style x:Key="StatusCellStyle" TargetType="DataGridCell">
+                    <!--Задается триггер-->
+                    <Style.Triggers>
+                        <!--Если "Да"-->
+                        <DataTrigger Binding="{Binding Status}" Value="Да">
+                            <!--задаем зеленый цвет-->
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <!--Если "Нет"-->
+                        <DataTrigger Binding="{Binding Status}" Value="Нет">
+                            <!--задаем ккрасный цвет-->
+                            <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+                <!--Такая же ситуация, но для столбца DepositPriceCellStyle-->
+                <Style x:Key="DepositPriceCellStyle" TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DepositPrice}" Value="0">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                
+                <!--Такая же ситуация, но для столбца RentalPriceCellStyle-->
+                <Style x:Key="RentalPriceCellStyle" TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RentalPrice}" Value="0">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <!--Обращаемся к Columns DataGrid-->
+            <DataGrid.Columns>
+                <!--Связываем отображаемое название Header с переменной полученной в Source-->
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Автор" Binding="{Binding Autor}" />
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" />
+                <!--CellStyle для некоторых столбцов задается свой стиль-->
+                <DataGridTextColumn Header="Залоговая стоимость" Binding="{Binding DepositPrice}" CellStyle="{StaticResource DepositPriceCellStyle}" />
+                <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RentalPrice}" CellStyle="{StaticResource RentalPriceCellStyle}" />
+                <DataGridTextColumn Header="Готова к выдаче" Binding="{Binding Status}" CellStyle="{StaticResource StatusCellStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+<!--StatusBar используется для отображения различной информации о текущем состоянии приложения, например о положении курсора, о количестве слов, о прогрессе заданий и т.д. -->
+        <!--Но тут в статус бар выносится текс в элемент TextBlock-->        
+        <StatusBar x:Name="statusBar" DockPanel.Dock="Bottom" Margin="0,626,0,0" HorizontalAlignment="Center" Width="1000">
+            <StatusBarItem>
+                <TextBlock x:Name="textBlockStatus" Text="В ожидании действий пользователя 🤷" />
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

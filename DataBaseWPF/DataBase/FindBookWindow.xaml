@@ -1,0 +1,81 @@
+﻿<Window x:Class="DataBase.FindBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBase"
+        mc:Ignorable="d"
+        Title="Найти книгу" Height="600" Width="700" Icon="/find_book_icon.jpg">
+    <Grid Background="#FFBBB9BC">
+
+        <Border MinWidth="200" Margin="30,44,30,0" Padding="30" Background="#FFF2ECF6" VerticalAlignment="Top" MaxWidth="700" CornerRadius="20" Height="340">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FF777077" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Найти книгу" FontSize="20" FontWeight="Bold" Margin="0 0 0 10" HorizontalAlignment="Center"/>
+
+                <Label Content="Введите название книги:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textNameBookToFind" Style="{StaticResource TextBoxStyle}"/>
+
+                <Label Content="Введите автора книги:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textAutorBookToFind" Style="{StaticResource TextBoxStyle}"/>
+                
+                <Label Content="Введите жанр книги:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textGenreBookToFind" Style="{StaticResource TextBoxStyle}"/>
+
+                <Grid Margin="0 30 0 20">
+                    <Button x:Name="btnFindBook" HorizontalAlignment="Left" Background="#FFB2CA7B" Content="Найти" Style="{StaticResource ButtonStyle}" Click="btnFindBook_Click">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonBorderStyle}" TargetType="{x:Type Border}"/>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button HorizontalAlignment="Right" Background="#FFB8B9BE" Content="Отмена" Style="{StaticResource ButtonStyle}" IsCancel="True">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonBorderStyle}" TargetType="{x:Type Border}"/>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+
+        </Border>
+        <DataGrid IsReadOnly="True" FontFamily="Trebuchet MS" AutoGenerateColumns="False" x:Name="dataGrid" MaxWidth="700" Margin="30,352,30,44" MinWidth="200">
+            <DataGrid.Resources>
+                <Style x:Key="StatusCellStyle" TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Да">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Нет">
+                            <Setter Property="Background" Value="Red"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+
+                <Style x:Key="DepositPriceCellStyle" TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DepositPrice}" Value="0">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Style>
+                <StaticResource ResourceKey="ModernDataGridStyle"/>
+            </DataGrid.Style>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Автор" Binding="{Binding Autor}" />
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" />
+                <DataGridTextColumn Header="Залоговая стоимость" Binding="{Binding DepositPrice}" CellStyle="{StaticResource DepositPriceCellStyle}" />
+                <DataGridTextColumn Header="Стоимость проката" Binding="{Binding RentalPrice}" />
+                <DataGridTextColumn Header="Готова к выдаче" Binding="{Binding Status}" CellStyle="{StaticResource StatusCellStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

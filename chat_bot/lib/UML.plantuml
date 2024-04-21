@@ -7,6 +7,7 @@ class "chat_bot::components::chat_buble.dart::ChatBubble" {
 }
 
 "chat_bot::components::chat_buble.dart::ChatBubble" o-- "chat_bot::models::message.dart::Message"
+"chat_bot::models::message.dart::Message" o-- "chat_bot::pages::chat_page.dart::ChatPage"
 "flutter::src::widgets::framework.dart::StatefulWidget" <|-- "chat_bot::components::chat_buble.dart::ChatBubble"
 
 class "chat_bot::components::chat_buble.dart::_ChatBubbleState" {

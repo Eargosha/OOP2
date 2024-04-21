@@ -1,0 +1,57 @@
+﻿<Window x:Class="DataBase.EditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBase"
+        mc:Ignorable="d"
+        Title="Изменение данных о книге" Height="650" Width="800" Icon="/icon_add_book.jpg">
+    <Grid Background="#FFBBB9BC">
+        <Border MinWidth="200" Margin="30" Padding="30" Background="#FFF2ECF6" VerticalAlignment="Center" MaxWidth="700" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" Color="#FF777077" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel x:Name="mainStackPanel">
+                <TextBlock Text="Изменение данных о книге" FontSize="20" FontWeight="Bold" Margin="0 0 0 10" HorizontalAlignment="Center"/>
+                <TextBlock Text="*Введите новые значения в поля ниже только в том случае, если их нужно изменить" FontSize="14" FontWeight="SemiBold" Margin="5 0 0 0" HorizontalAlignment="Left"/>
+
+                <!--Label может содержать в себе любой другой элемент, а не только текст. Оно просто показывает свой content-->
+                <Label Content="Введите новое название:" Style="{StaticResource LabelStyle}"/>
+                <!--TextBox позволяет пользователю вводить текст в приложение-->
+                <TextBox x:Name="textBoxName" Style="{StaticResource TextBoxStyle}"/>
+
+                <Label Content="Введите нового автора:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textBoxAutor" Style="{StaticResource TextBoxStyle}"/>
+
+                <Label Content="Введите новый жанр:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textBoxGenre" Style="{StaticResource TextBoxStyle}"/>
+
+                <Label Content="Введите новую залоговую цену:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textBoxDepositPrise" Style="{StaticResource TextBoxStyle}"/>
+
+                <Label Content="Введите новую цену проката:" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="textBoxRentalPrice" Style="{StaticResource TextBoxStyle}"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                    <Label Content="Готова к выдаче? " Style="{StaticResource LabelStyle}" />
+                    <!--CheckBox - создает возможеость выбрать галочку. IsChecked - изначально установить в True-->
+                    <CheckBox x:Name="checkBoxReady" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 2 0 0"/>
+                </StackPanel>
+
+                <Grid Margin="0 30 0 20">
+                    <Button x:Name="btnChangeBookData" HorizontalAlignment="Left" Background="#FFB2CA7B" Content="Внести изменения" Style="{StaticResource ButtonStyle}" Click="btnChangeBookData_Click">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonBorderStyle}" TargetType="{x:Type Border}"/>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button HorizontalAlignment="Right" Background="#FFB8B9BE" Content="Отмена" Style="{StaticResource ButtonStyle}" IsCancel="True">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonBorderStyle}" TargetType="{x:Type Border}"/>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
